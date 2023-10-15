@@ -14,11 +14,11 @@ fun SetUpNavGraph(
 ){
     NavHost(navController = navController, startDestination = "register_screen"){
         composable(Screen.RegisterScreen.route){
-            RegisterScreen(navController = navController, viewModel = viewModel())
+            RegisterScreen(navController = navController)
         }
 
         composable(Screen.LoginScreen.route){
-            LogInScreen(navController = navController, viewModel = viewModel())
+            LogInScreen(navController = navController)
         }
     }
 }

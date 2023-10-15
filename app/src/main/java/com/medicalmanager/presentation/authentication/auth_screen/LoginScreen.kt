@@ -108,7 +108,6 @@ fun LogInScreen(
             modifier = Modifier
                 .clickable {
                     navController.navigate(Screen.RegisterScreen.route)
-                    navController.navigate(Screen.RegisterScreen.route)
                 }
                 .padding(vertical = 8.dp)
         )
