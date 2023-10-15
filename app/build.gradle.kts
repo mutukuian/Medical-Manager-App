@@ -77,6 +77,7 @@ dependencies {
     debugImplementation(ComposeDebugImplementation.manifestTest)
 
     implementation (DaggerHilt.hilt)
+    implementation (DaggerHilt.hiltComposeNavigation)
     kapt (DaggerHilt.hiltCompiler)
 
     implementation(JetpackCompose.navigation)
