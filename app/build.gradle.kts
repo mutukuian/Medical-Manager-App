@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 
 }
 
@@ -63,6 +64,7 @@ dependencies {
     implementation(JetpackCompose.composeUiToolingPreview)
     implementation(JetpackCompose.composeMaterial)
     implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
 
 
     testImplementation(TestImplementation.junit)
@@ -75,6 +77,7 @@ dependencies {
     debugImplementation(ComposeDebugImplementation.manifestTest)
 
     implementation (DaggerHilt.hilt)
+    implementation (DaggerHilt.hiltComposeNavigation)
     kapt (DaggerHilt.hiltCompiler)
 
     implementation(JetpackCompose.navigation)

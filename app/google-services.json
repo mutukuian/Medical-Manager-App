@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316670182453",
+    "project_id": "medicalmanager-7b28d",
+    "storage_bucket": "medicalmanager-7b28d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316670182453:android:dc5c26b2d02e40654cdd7c",
+        "android_client_info": {
+          "package_name": "com.medicalmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ16V6ivI_7FRP449qNlBxve9kfuDkxPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
