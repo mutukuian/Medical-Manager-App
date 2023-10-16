@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
         repository.loginUser(email, password).collect{
                 result ->
             when(result){
-                is Resource.Success ->{_loginState.send(AuthState(data = "Registration Successfully"))}
+                is Resource.Success ->{_loginState.send(AuthState(data = "LogIn Successfully"))}
                 is Resource.Loading ->{_loginState.send(AuthState(isLoading = true))}
                 is Resource.Error ->{_loginState.send(AuthState(error = result.message.toString()))}
             }
