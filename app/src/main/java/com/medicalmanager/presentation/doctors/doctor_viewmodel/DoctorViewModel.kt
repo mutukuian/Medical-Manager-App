@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.medicalmanager.core.common.Resource
 import com.medicalmanager.domain.model.DoctorModel
+import kotlinx.coroutines.flow.collect
 import com.medicalmanager.domain.use_case.GetDoctorUseCase
 import com.medicalmanager.presentation.doctors.doctor_screen.DoctorListingState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,15 +17,19 @@ import javax.inject.Inject
 @HiltViewModel
 class DoctorViewModel @Inject constructor(
     private val getDoctorUseCase: GetDoctorUseCase
-):ViewModel(){
+):ViewModel() {
 
-    private val _doctorListing:MutableStateFlow<DoctorListingState> = MutableStateFlow(
+    private val _doctorListing: MutableStateFlow<DoctorListingState> = MutableStateFlow(
         DoctorListingState()
     )
 
-    val  doctorListing:StateFlow<DoctorListingState> = _doctorListing
+    val doctorListing: StateFlow<DoctorListingState> = _doctorListing
 
-    fun fetchDoctors(){
+    init {
+        fetchDoctors()
+    }
+
+        fun fetchDoctors(){
         viewModelScope.launch {
             try {
                 val doctors = getDoctorUseCase()
@@ -34,6 +39,7 @@ class DoctorViewModel @Inject constructor(
             }
         }
     }
+
 }
 
 /*

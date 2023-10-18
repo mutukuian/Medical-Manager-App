@@ -5,4 +5,8 @@ data class DoctorModel(
     val role:String,
     val hospitalName:String,
     val image:String
-)
+){
+    constructor():this("","","","")
+}
+
+
