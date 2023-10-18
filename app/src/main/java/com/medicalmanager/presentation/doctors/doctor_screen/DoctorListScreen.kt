@@ -1,6 +1,8 @@
 package com.medicalmanager.presentation.doctors.doctor_screen
 
+import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -56,6 +58,7 @@ fun DoctorListScreen(
 //                }
 //            }
             handleDoctorListingState(doctorListingState = doctorListingState)
+            Log.d("success","${handleDoctorListingState(doctorListingState = doctorListingState)}")
 
 
             LaunchedEffect(key1 = doctorListingState.value?.error){
@@ -73,22 +76,32 @@ fun DoctorListScreen(
 
     }
 
-//    when(doctorListingState){
-//        is DoctorListingState.Success ->{
-//            val doctorList = (doctorListingState as DoctorListingState.Success).data
-//            LazyColumn{items(doctorList){doctor ->
-//                DoctorItem(doctor = doctor)
-//                }
-//            }
-//        }
-//        is DoctorListingState.Error ->{
-//            //handle error state
-//        }
-//
-//        is DoctorListingState.Loading ->{
-//            //handle loading state
-//        }
-//    }
+/*
+@Composable
+fun DoctorListScreen(
+    viewModel: DoctorViewModel = hiltViewModel()
+) {
+    val doctorListingState = viewModel.doctorListing.collectAsState(initial = DoctorListingState.Loading)
+
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        when (doctorListingState.value) {
+            is DoctorListingState.Success -> {
+                val doctorList = (doctorListingState.value as DoctorListingState.Success).data
+                DoctorsList(doctorList)
+            }
+            is DoctorListingState.Error -> {
+                // Handle error state
+                Text(text = "Error: ${(doctorListingState.value as DoctorListingState.Error).error}")
+            }
+            is DoctorListingState.Loading -> {
+                // Handle loading state
+                Text(text = "Loading...")
+            }
+        }
+    }
+}
+
+ */
 
 }
 
@@ -120,6 +133,8 @@ fun DoctorItem(doctor: DoctorModel) {
         .padding(16.dp)) {
         //Load the doctors image
         //CoilImage(data = doctor.image , contentDescription = "Doctor Image")
+//        Image(painter = rememberAsyncImagePainter(), contentDescription = null)
+
 
         Text(
             text = doctor.fullName,
