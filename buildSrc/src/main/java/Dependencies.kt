@@ -40,7 +40,7 @@ object Version {
 
     const val composeNavigation = "2.6.0-alpha05"
 
-    const val coilImageLoading = "2.2.2"
+    const val coilImageLoading = "2.4.0"
 
     // testImplementation versions
     const val kotlinxCoroutine = "1.6.4"
