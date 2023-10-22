@@ -1,8 +1,6 @@
 package com.medicalmanager.presentation.doctors.doctor_screen
 
-import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.medicalmanager.domain.model.DoctorModel
 import com.medicalmanager.presentation.doctors.doctor_viewmodel.DoctorViewModel
 import kotlinx.coroutines.launch
@@ -49,16 +48,8 @@ fun DoctorListScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-//            LaunchedEffect(key1 = doctorListingState.value?.data){
-//                scope.launch {
-//                    if (doctorListingState.value?.data?.isNotEmpty() == true){
-//                        val success = doctorListingState.value?.data
-//                        Toast.makeText(context,"$success", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
+
             handleDoctorListingState(doctorListingState = doctorListingState)
-            Log.d("success","${handleDoctorListingState(doctorListingState = doctorListingState)}")
 
 
             LaunchedEffect(key1 = doctorListingState.value?.error){
@@ -71,37 +62,10 @@ fun DoctorListScreen(
             }
 
         }
-//        handleDoctorListingState(doctorListingState = doctorListingState)
+
 
 
     }
-
-/*
-@Composable
-fun DoctorListScreen(
-    viewModel: DoctorViewModel = hiltViewModel()
-) {
-    val doctorListingState = viewModel.doctorListing.collectAsState(initial = DoctorListingState.Loading)
-
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        when (doctorListingState.value) {
-            is DoctorListingState.Success -> {
-                val doctorList = (doctorListingState.value as DoctorListingState.Success).data
-                DoctorsList(doctorList)
-            }
-            is DoctorListingState.Error -> {
-                // Handle error state
-                Text(text = "Error: ${(doctorListingState.value as DoctorListingState.Error).error}")
-            }
-            is DoctorListingState.Loading -> {
-                // Handle loading state
-                Text(text = "Loading...")
-            }
-        }
-    }
-}
-
- */
 
 }
 
@@ -134,6 +98,9 @@ fun DoctorItem(doctor: DoctorModel) {
         //Load the doctors image
         //CoilImage(data = doctor.image , contentDescription = "Doctor Image")
 //        Image(painter = rememberAsyncImagePainter(), contentDescription = null)
+
+        AsyncImage(model = doctor.image, contentDescription = null)
+
 
 
         Text(

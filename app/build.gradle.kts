@@ -83,4 +83,5 @@ dependencies {
     kapt (DaggerHilt.hiltCompiler)
 
     implementation(JetpackCompose.navigation)
+    implementation(CoilImageLoadingLib.coil)
 }
