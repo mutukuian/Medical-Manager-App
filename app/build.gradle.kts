@@ -87,4 +87,15 @@ dependencies {
 
     // Timber
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    //material 3 core
+    implementation("com.maxkeppeler.sheets-compose-dialogs:core:1.0.2")
+    //material 3 - Calendar
+    implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.0.2")
+    //material 3 clock
+    implementation("com.maxkeppeler.sheets-compose-dialogs:clock:1.0.2")
+
+
+
+
 }

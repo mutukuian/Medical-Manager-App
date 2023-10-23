@@ -3,13 +3,7 @@ package com.medicalmanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
-import com.medicalmanager.presentation.authentication.auth_navigation.SetUpNavGraph
-import com.medicalmanager.presentation.doctors.doctor_screen.DoctorListScreen
+import com.medicalmanager.presentation.appointment.screen.AppointmentBookingScreen
 import com.medicalmanager.presentation.ui.theme.MedicalManagerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +21,7 @@ class MainActivity : ComponentActivity() {
 //                    val navController = rememberNavController()
 //                    SetUpNavGraph(navController = navController)
 
-                DoctorListScreen()
+               AppointmentBookingScreen()
                 }
             }
         }
