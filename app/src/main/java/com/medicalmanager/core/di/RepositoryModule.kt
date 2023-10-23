@@ -2,8 +2,10 @@ package com.medicalmanager.core.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.medicalmanager.data.repository.AppointmentRepositoryImpl
 import com.medicalmanager.data.repository.AuthRepositoryImpl
 import com.medicalmanager.data.repository.DoctorRepositoryImpl
+import com.medicalmanager.domain.repository.AppointmentRepository
 import com.medicalmanager.domain.repository.AuthRepository
 import com.medicalmanager.domain.repository.DoctorRepository
 import dagger.Module
@@ -27,5 +29,11 @@ object RepositoryModule {
     @Singleton
     fun providesDoctorRepository(firebaseFireStore: FirebaseFirestore):DoctorRepository{
         return DoctorRepositoryImpl(firebaseFireStore)
+    }
+
+    @Provides
+    @Singleton
+    fun providesAppointmentRepository(firebaseAuth: FirebaseAuth,fireStore: FirebaseFirestore):AppointmentRepository{
+        return AppointmentRepositoryImpl(fireStore, firebaseAuth)
     }
 }
