@@ -84,4 +84,7 @@ dependencies {
 
     implementation(JetpackCompose.navigation)
     implementation(CoilImageLoadingLib.coil)
+
+    // Timber
+    implementation("com.jakewharton.timber:timber:4.7.1")
 }
