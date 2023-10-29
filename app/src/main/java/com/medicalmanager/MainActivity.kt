@@ -3,7 +3,7 @@ package com.medicalmanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.medicalmanager.presentation.appointment.screen.AppointmentBookingScreen
+import com.medicalmanager.presentation.searchcontroller.search_screen.SearchBarM3
 import com.medicalmanager.presentation.ui.theme.MedicalManagerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,9 @@ class MainActivity : ComponentActivity() {
 //                    val navController = rememberNavController()
 //                    SetUpNavGraph(navController = navController)
 
-               AppointmentBookingScreen(doctorId = "", userId = "")
+//               AppointmentBookingScreen(doctorId = "", userId = "")
+
+                SearchBarM3()
                 }
             }
         }
