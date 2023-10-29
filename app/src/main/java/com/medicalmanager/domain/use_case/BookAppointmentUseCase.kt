@@ -7,7 +7,6 @@ import javax.inject.Inject
 class BookAppointmentUseCase @Inject constructor(
   private val appointmentRepository: AppointmentRepository
 ){
-
     suspend operator fun invoke(appointmentModel: AppointmentModel):Boolean{
         return appointmentRepository.bookAppointment(appointmentModel)
     }

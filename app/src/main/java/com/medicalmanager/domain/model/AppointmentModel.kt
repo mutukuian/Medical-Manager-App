@@ -1,11 +1,12 @@
 package com.medicalmanager.domain.model
 
-import java.util.Date
+import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+
 
 data class AppointmentModel(
     val doctorId:String,
     val userId:String,
-    val date:Date,
+    val date: CalendarSelection.Date,
     val status:AppointmentStatus
 )
 
@@ -14,3 +15,4 @@ enum class AppointmentStatus {
     CONFIRMED,
     CANCELED
 }
+
