@@ -97,5 +97,20 @@ dependencies {
 
 
 
+    // JUnit for unit testing
+    testImplementation("junit:junit:4.13.2")
+
+    // AndroidJUnitRunner and rules for UI testing
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+
+    // Espresso for UI testing
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Firebase Test Lab for Firebase service testing
+    androidTestImplementation("com.google.firebase:firebase-test-lab:1.3.6")
+
+    //assertion
+    testImplementation("com.google.truth:truth:1.1")
 
 }
