@@ -20,7 +20,7 @@ class SearchControllerUseCase @Inject constructor(
             val search = searchControllerRepository.searchDoctor(query)
             emit(Resource.Success(search))
         }
-        catch (e:coil.network.HttpException){
+        catch (e:Exception){
             emit(Resource.Error(e.localizedMessage?: "An unexpected error occurred"))
         }
         catch (e:IOException){
