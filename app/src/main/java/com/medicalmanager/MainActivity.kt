@@ -3,7 +3,7 @@ package com.medicalmanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.medicalmanager.presentation.searchcontroller.search_screen.SearchBarM3
+import com.medicalmanager.presentation.bottomnavigation.AppNavigation
 import com.medicalmanager.presentation.ui.theme.MedicalManagerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,10 @@ class MainActivity : ComponentActivity() {
 
 //               AppointmentBookingScreen(doctorId = "", userId = "")
 
-                SearchBarM3()
+//                SearchBarM3()
+
+                AppNavigation()
+
                 }
             }
         }
