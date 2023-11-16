@@ -93,6 +93,7 @@ fun LogInScreen(
             onClick = {
                 scope.launch {
                     viewModel.loginUser(email, password)
+                    navController.navigate(Screen.HomeScreen.route)
                 }
             },
             shape = RoundedCornerShape(size = 8.dp)
