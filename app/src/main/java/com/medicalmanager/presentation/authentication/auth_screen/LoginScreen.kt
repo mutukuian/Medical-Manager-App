@@ -112,6 +112,8 @@ fun LogInScreen(
                 }
                 .padding(vertical = 8.dp)
         )
+
+
     }
 
     val state = viewModel.loginState.collectAsState(initial = null)

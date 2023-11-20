@@ -24,5 +24,6 @@ fun SetUpNavGraph(
         composable(Screen.HomeScreen.route){
             AppNavigation()
         }
+
     }
 }
