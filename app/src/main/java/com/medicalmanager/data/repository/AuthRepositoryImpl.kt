@@ -1,5 +1,6 @@
 package com.medicalmanager.data.repository
 
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.medicalmanager.core.common.Resource
@@ -33,4 +34,21 @@ class AuthRepositoryImpl @Inject constructor(
            emit(Resource.Error(it.message.toString()))
        }
     }
+
+
+    override fun googleSignIng(credential: AuthCredential): Flow<Resource<AuthResult>> {
+        return  flow {
+            emit(Resource.Loading())
+            val result = firebaseAuth.signInWithCredential(credential).await()
+            emit(Resource.Success(result))
+        }.catch {
+            emit(Resource.Error(it.message.toString()))
+        }
+    }
+
+
+
+
+
+
 }

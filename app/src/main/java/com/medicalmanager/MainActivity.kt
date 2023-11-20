@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -21,13 +22,6 @@ class MainActivity : ComponentActivity() {
 //                ) {
                     val navController = rememberNavController()
                     SetUpNavGraph(navController = navController)
-
-//               AppointmentBookingScreen(doctorId = "", userId = "")
-
-//                SearchBarM3()
-
-//                AppNavigation()
-
                 }
             }
         }
