@@ -2,14 +2,20 @@ package com.medicalmanager.presentation.doctors.doctor_screen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -92,6 +98,12 @@ fun DoctorsList(docs: List<DoctorModel>) {
 
 @Composable
 fun DoctorItem(doctor: DoctorModel) {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        elevation = 8.dp
+    ){
+
+
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
@@ -106,17 +118,31 @@ fun DoctorItem(doctor: DoctorModel) {
         Text(
             text = doctor.fullName,
             fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(vertical = 8.dp)
         )
 
-        Text(
-            text = doctor.role,
-            fontSize = 16.sp
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
         )
-
-        Text(
-            text = doctor.hospitalName,
-            fontSize = 16.sp
-        )
+        {
+            Icon(imageVector = Icons.Default.Person, contentDescription = null)
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = doctor.role, fontSize = 16.sp)
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+//            Icon(imageVector = Icons.Default.WorkOutline, contentDescription = null)
+//            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = doctor.hospitalName, fontSize = 16.sp)
+        }
     }
+}
 }
