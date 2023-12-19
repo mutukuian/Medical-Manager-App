@@ -9,4 +9,6 @@ interface AuthRepository {
     fun loginUser(email:String,password:String):Flow<Resource<AuthResult>>
 
     fun registerUser(email: String,password: String):Flow<Resource<AuthResult>>
+
+    suspend fun signOut():Flow<Resource<Unit>>
 }

@@ -15,5 +15,4 @@ object NetworkModule {
     @Singleton
     fun providesFirebaseAuthentication() = FirebaseAuth.getInstance()
 
-
 }
