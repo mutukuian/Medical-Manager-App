@@ -51,4 +51,14 @@ class AuthRepositoryImpl @Inject constructor(
 
 
 
+
+    override suspend fun signOut(): Flow<Resource<Unit>> {
+      return flow {
+          emit(Resource.Loading())
+          val result =firebaseAuth.signOut()
+          emit(Resource.Success(result))
+      }.catch {
+          emit(Resource.Error(it.message.toString()))
+      }
+    }
 }
