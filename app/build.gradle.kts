@@ -64,9 +64,9 @@ dependencies {
     implementation(JetpackCompose.composeUiToolingPreview)
     implementation(JetpackCompose.composeMaterial)
     implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
-    implementation("com.google.firebase:firebase-firestore:24.8.1")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
+    implementation("com.google.firebase:firebase-firestore:24.10.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 

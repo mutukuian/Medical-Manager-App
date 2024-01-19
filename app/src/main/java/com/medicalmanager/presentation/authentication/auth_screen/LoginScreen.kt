@@ -140,6 +140,7 @@ fun LogInScreen(
 
                 launcher.launch(googleSignInClient.signInIntent)
 
+
             }) {
                 androidx.compose.material.Icon(
                     painter = painterResource(id = R.drawable.google_icon),
@@ -197,12 +198,13 @@ fun LogInScreen(
         }
         LaunchedEffect(key1 = googleSignInState.success) {
             scope.launch {
-                if (googleSignInState.success != null) {
+                if (googleSignInState.success != null ) {
                     navController.navigate(Screen.HomeScreen.route)
                     Toast.makeText(context, "SignIn Success", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
 
 
         Row(
