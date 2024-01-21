@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
+import com.medicalmanager.presentation.appointment.screen.AppointmentBookingScreen
 import com.medicalmanager.presentation.authentication.auth_navigation.SetUpNavGraph
 import com.medicalmanager.presentation.doctors.doctor_screen.DoctorListScreen
 import com.medicalmanager.presentation.ui.theme.MedicalManagerTheme
