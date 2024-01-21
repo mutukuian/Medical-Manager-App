@@ -1,10 +1,7 @@
-package com.medicalmanager.presentation.doctors.doctor_viewmodel
+package com.medicalmanager.presentation.doctors.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.medicalmanager.core.common.Resource
-import com.medicalmanager.domain.model.DoctorModel
-import kotlinx.coroutines.flow.collect
 import com.medicalmanager.domain.use_case.GetDoctorUseCase
 import com.medicalmanager.presentation.doctors.doctor_screen.DoctorListingState
 import dagger.hilt.android.lifecycle.HiltViewModel

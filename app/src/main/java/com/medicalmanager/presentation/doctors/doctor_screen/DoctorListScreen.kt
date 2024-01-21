@@ -31,7 +31,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.medicalmanager.domain.model.DoctorModel
-import com.medicalmanager.presentation.doctors.doctor_viewmodel.DoctorViewModel
+import com.medicalmanager.presentation.appointment.screen.AppointmentBookingScreen
+import com.medicalmanager.presentation.doctors.viewmodels.DoctorViewModel
+import com.medicalmanager.presentation.searchcontroller.search_screen.SearchBarM3
 import kotlinx.coroutines.launch
 
 @Composable
@@ -50,12 +52,14 @@ fun DoctorListScreen(
         .padding(16.dp)) {
         Text(text = "Doctors List", style = MaterialTheme.typography.body1)
 
+        Spacer(modifier = Modifier.height(24.dp))
 
+        SearchBarM3()
 
         Spacer(modifier = Modifier.height(24.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-            handleDoctorListingState(doctorListingState = doctorListingState)
+            HandleDoctorListingState(doctorListingState = doctorListingState)
 
 
             LaunchedEffect(key1 = doctorListingState.value?.error){
@@ -76,7 +80,7 @@ fun DoctorListScreen(
 }
 
 @Composable
-fun handleDoctorListingState(doctorListingState: State<DoctorListingState?>) {
+fun HandleDoctorListingState(doctorListingState: State<DoctorListingState?>) {
     when{
 
         doctorListingState.value?.data != null ->{
@@ -99,50 +103,50 @@ fun DoctorsList(docs: List<DoctorModel>) {
 @Composable
 fun DoctorItem(doctor: DoctorModel) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         elevation = 8.dp
-    ){
-
-
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)) {
-        //Load the doctors image
-        //CoilImage(data = doctor.image , contentDescription = "Doctor Image")
-//        Image(painter = rememberAsyncImagePainter(), contentDescription = null)
-
-        AsyncImage(model = doctor.image, contentDescription = null)
-
-
-
-        Text(
-            text = doctor.fullName,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(vertical = 8.dp)
-        )
-
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            verticalAlignment = Alignment.CenterVertically
-        )
-        {
-            Icon(imageVector = Icons.Default.Person, contentDescription = null)
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(text = doctor.role, fontSize = 16.sp)
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(16.dp)
         ) {
-//            Icon(imageVector = Icons.Default.WorkOutline, contentDescription = null)
-//            Spacer(modifier = Modifier.width(4.dp))
-            Text(text = doctor.hospitalName, fontSize = 16.sp)
+            // Left side (Name, Role, Hospital)
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                // Load the doctor's image on the right
+                AsyncImage(model = doctor.image, contentDescription = null)
+
+                Text(
+                    text = doctor.fullName,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(imageVector = Icons.Default.Person, contentDescription = null)
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(text = doctor.role, fontSize = 16.sp)
+                }
+
+                Text(text = doctor.hospitalName, fontSize = 16.sp, modifier = Modifier.padding(vertical = 4.dp))
+            }
+
+            // Right side (Buttons)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp)
+            ) {
+                //book appointment
+                AppointmentBookingScreen()
+            }
         }
     }
-}
 }

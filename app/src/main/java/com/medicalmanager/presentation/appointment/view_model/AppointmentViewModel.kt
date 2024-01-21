@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import com.medicalmanager.core.common.Resource
 import com.medicalmanager.domain.model.AppointmentModel
 import com.medicalmanager.domain.model.AppointmentStatus
 import com.medicalmanager.domain.use_case.BookAppointmentUseCase
@@ -25,20 +26,26 @@ class AppointmentViewModel @Inject constructor(
     val appointmentBooking: StateFlow<BookingState> = _appointmentBooking
 
 
+
+
      val selection = CalendarSelection.Date{date ->
          Log.d("SelectedDate","{$date}")
      }
 
     init {
-        bookAppointment(appointment = AppointmentModel(doctorId = "", userId = "", date = selection, status = AppointmentStatus.PENDING))
+        bookAppointment(appointment = AppointmentModel( date = selection, status = AppointmentStatus.PENDING))
     }
     fun bookAppointment(appointment: AppointmentModel){
         viewModelScope.launch {
-            val result = bookAppointmentUseCase(appointment)
 
-            _appointmentBooking.value = when(result){
-                true -> BookingState(data = appointment)
-                false -> BookingState(error = "Booking Failed")
+            bookAppointmentUseCase.invoke(appointment).collect{result->
+                when(result){
+                    is Resource.Success ->{_appointmentBooking.value = BookingState(data = appointment)
+                    }
+                    is Resource.Loading ->{_appointmentBooking.value = BookingState(isLoading = true)
+                    }
+                    is Resource.Error ->{_appointmentBooking.value = BookingState(error = result.message.toString())}
+                }
             }
         }
     }

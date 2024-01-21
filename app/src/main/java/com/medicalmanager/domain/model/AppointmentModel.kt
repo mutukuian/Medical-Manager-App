@@ -4,8 +4,8 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 
 
 data class AppointmentModel(
-    val doctorId:String,
-    val userId:String,
+//    val doctorId:String,
+//    val userId:String,
     val date: CalendarSelection.Date,
     val status:AppointmentStatus
 )
