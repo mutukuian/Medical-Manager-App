@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 //                ) {
                     val navController = rememberNavController()
                     SetUpNavGraph(navController = navController)
-//                DoctorListScreen()
+
                 }
             }
         }

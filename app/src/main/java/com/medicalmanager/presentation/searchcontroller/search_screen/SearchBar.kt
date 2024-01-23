@@ -52,6 +52,7 @@ fun SearchBarM3(
 
 
     SearchBar(
+
         query =query,
         onQueryChange ={query = it},
         onSearch ={newQuery->
