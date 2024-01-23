@@ -126,7 +126,7 @@ fun ProfileCardUI() {
                 )
 
                 Text(
-                    text = "UI.Stack.YT@gmail.com",
+                    text = "mutukui940@gmail.com",
                     fontFamily = Poppins,
                     color = Color.Gray,
                     fontSize = 10.sp,
@@ -283,7 +283,11 @@ fun SupportOptionsUI() {
         SupportItem(
             icon = R.drawable.ic_whatsapp,
             mainText = "Contact",
-            onClick = {}
+            onClick = {
+                val phoneNumber = "+254707014276"
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                context.startActivity(intent)
+            }
         )
         SupportItem(
             icon = R.drawable.ic_feedback,
