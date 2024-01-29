@@ -15,6 +15,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.medicalmanager.presentation.authentication.auth_navigation.Screen
+import com.medicalmanager.presentation.authentication.auth_screen.LogInScreen
 import com.medicalmanager.presentation.bookings.BookingsScreen
 import com.medicalmanager.presentation.doctors.doctor_details.DoctorDetailScreen
 import com.medicalmanager.presentation.doctors.doctor_screen.DoctorListScreen
@@ -71,8 +73,12 @@ fun AppNavigation(){
                 BookingsScreen()
             }
         composable(route = Screens.ProfileScreen.name){
-                ProfileScreen()
+                ProfileScreen(navController)
             }
+        composable(route = Screenss.LogInScreen.route){
+            LogInScreen(navController = navController)
+        }
+        
         composable(route = Screens.DoctorDetailsScreen.name){backStackEntry->
             val doctorImage = backStackEntry.arguments?.getString("doctorImage")
             val doctorName = backStackEntry.arguments?.getString("doctorName")

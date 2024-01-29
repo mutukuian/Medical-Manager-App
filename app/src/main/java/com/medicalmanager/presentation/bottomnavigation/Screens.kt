@@ -6,3 +6,7 @@ enum class Screens {
     BookingsScreen,
     ProfileScreen
 }
+
+sealed class Screenss(val route: String){
+    object  LogInScreen:Screenss(route = "login_screen")
+}
