@@ -61,14 +61,7 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-//        Image(
-//            painter = painterResource(id = R.drawable.),
-//            contentDescription = null,
-//            modifier = Modifier
-//                .size(120.dp)
-//                .padding(bottom = 16.dp),
-//            contentScale = ContentScale.FillWidth
-//        )
+
 
 
         TextField(

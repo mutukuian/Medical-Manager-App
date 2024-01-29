@@ -1,4 +1,4 @@
-package com.medicalmanager.presentation.authentication.auth_view_model
+package com.medicalmanager.presentation.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,27 +12,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LogOutViewModel @Inject constructor(
-    private val repository:AuthRepository
-) :ViewModel() {
+class UserDetailsViewModel @Inject constructor(
+  private val repository:AuthRepository
+):ViewModel() {
 
+    private val _userState = Channel<AuthState>()
+    val userState = _userState.receiveAsFlow()
 
-    private val _logOutState = Channel<AuthState>()
-    val logOutState = _logOutState.receiveAsFlow()
-
-    fun signOut() = viewModelScope.launch {
-        repository.signOut().collect { result ->
+    fun getUserDetails(email: String) = viewModelScope.launch {
+        repository.getUserDetails(email).collect { result ->
             when (result) {
                 is Resource.Success -> {
-                    _logOutState.send(AuthState(data = "Log Out Successfully"))
+                    _userState.send(AuthState(data = " Successfully"))
                 }
 
                 is Resource.Loading -> {
-                    _logOutState.send(AuthState(isLoading = true))
+                    _userState.send(AuthState(isLoading = true))
                 }
 
                 is Resource.Error -> {
-                    _logOutState.send(AuthState(error = result.message.toString()))
+                    _userState.send(AuthState(error = result.message.toString()))
                 }
             }
         }

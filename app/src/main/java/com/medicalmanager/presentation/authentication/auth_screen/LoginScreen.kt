@@ -117,7 +117,6 @@ fun LogInScreen(
                 scope.launch {
                     viewModel.loginUser(email, password)
                 }
-
             },
             shape = RoundedCornerShape(size = 8.dp)
             ) {
