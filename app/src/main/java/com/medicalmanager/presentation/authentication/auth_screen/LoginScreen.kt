@@ -45,10 +45,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.medicalmanager.R
 import com.medicalmanager.core.common.Constants.CLIENT_ID
-import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 import com.medicalmanager.presentation.authentication.auth_view_model.LoginViewModel
-import com.medicalmanager.presentation.bottomnavigation.AppNavigation
-import com.medicalmanager.presentation.bottomnavigation.Screens
 import kotlinx.coroutines.launch
 
 @Composable
