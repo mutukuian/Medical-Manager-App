@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -96,6 +97,15 @@ fun DoctorsList(docs: List<DoctorModel>) {
             DoctorItem(doctor = doctor)
             Spacer(modifier = Modifier.height(8.dp))
 
+        }
+        item{
+            val scrollState = rememberLazyListState()
+            val isScrollableToBottom = scrollState.layoutInfo
+                .visibleItemsInfo
+                .lastOrNull()?.index == docs.size-1
+            if (isScrollableToBottom){
+
+            }
         }
     }
 }

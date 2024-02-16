@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -46,6 +47,8 @@ import com.medicalmanager.R
 import com.medicalmanager.core.common.Constants.CLIENT_ID
 import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 import com.medicalmanager.presentation.authentication.auth_view_model.LoginViewModel
+import com.medicalmanager.presentation.bottomnavigation.AppNavigation
+import com.medicalmanager.presentation.bottomnavigation.Screens
 import kotlinx.coroutines.launch
 
 @Composable
@@ -53,6 +56,7 @@ fun LogInScreen(
     navController: NavHostController,
     viewModel: LoginViewModel = hiltViewModel()
 ){
+
 
     val googleSignInState = viewModel.googleState.value
 
@@ -157,7 +161,7 @@ fun LogInScreen(
             fontSize = 14.sp,
             modifier = Modifier
                 .clickable {
-                    navController.navigate(Screen.RegisterScreen.route)
+                    navController.navigate(com.medicalmanager.presentation.navigation.Screen.RegisterScreen.route)
                 }
                 .padding(vertical = 8.dp)
         )
@@ -180,7 +184,7 @@ fun LogInScreen(
             scope.launch {
                 if (state.value?.data?.isNotEmpty() == true) {
                     val success = state.value?.data
-                    navController.navigate(Screen.HomeScreen.route)
+                    navController.navigate(com.medicalmanager.presentation.navigation.Screen.HomeScreen.route)
                     Toast.makeText(context, "$success", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -198,7 +202,7 @@ fun LogInScreen(
         LaunchedEffect(key1 = googleSignInState.success) {
             scope.launch {
                 if (googleSignInState.success != null ) {
-                    navController.navigate(Screen.HomeScreen.route)
+                    navController.navigate(com.medicalmanager.presentation.navigation.Screen.HomeScreen.route)
                     Toast.makeText(context, "SignIn Success", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -15,24 +15,21 @@ import javax.inject.Inject
 
 class AppointmentRepositoryImpl @Inject constructor(
     fireStore: FirebaseFirestore,
-    private val firebaseAuth: FirebaseAuth
+    private val  firebaseAuth:FirebaseAuth
 ):AppointmentRepository {
 
     private val appointmentsCollection = fireStore.collection("appointments")
     override suspend fun bookAppointment(appointment: AppointmentModel): Flow<Resource<Task<DocumentReference>>> {
         return flow {
             emit(Resource.Loading())
-
                 val appointmentData = mapOf(
-//                "doctorId" to appointment.doctorId,
-//                "userId" to appointment.userId,
                     "date" to appointment.date,
                     "status" to appointment.status.name
                 )
 
                 //add appointment to fireStore
                val result = appointmentsCollection.add(appointmentData)
-                    emit(Resource.Success(result))
+            emit(Resource.Success(result))
         }.catch {
             emit(Resource.Error(it.message.toString()))
         }

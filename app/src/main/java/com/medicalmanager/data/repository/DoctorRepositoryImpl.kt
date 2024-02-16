@@ -20,7 +20,7 @@ class DoctorRepositoryImpl @Inject constructor(
     private val doctorsCollection = fireStore.collection("Doctors")
     override suspend fun fetchAllDoctors(): List<DoctorModel> {
         val doctorList = mutableListOf<DoctorModel>()
-        doctorsCollection.get().addOnSuccessListener { querySnapshot ->
+        doctorsCollection.limit(2).get().addOnSuccessListener { querySnapshot ->
             for (document in querySnapshot.documents){
                 val doctor = DoctorModel(
                     fullName = document.get("Name").toString(),
