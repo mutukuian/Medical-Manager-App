@@ -113,6 +113,11 @@ dependencies {
     // Firebase Test Lab for Firebase service testing
     androidTestImplementation("com.google.firebase:firebase-test-lab:1.3.6")
 
+    //Date Picker library
+    implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
     //assertion
     testImplementation("com.google.truth:truth:1.1")
 

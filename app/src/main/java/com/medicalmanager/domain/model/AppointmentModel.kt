@@ -1,11 +1,11 @@
 package com.medicalmanager.domain.model
 
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import kotlinx.coroutines.flow.StateFlow
+import java.time.LocalDate
 
 
 data class AppointmentModel(
-//    val doctorId:String,
-//    val userId:String,
     val date: CalendarSelection.Date,
     val status:AppointmentStatus
 )

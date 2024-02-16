@@ -1,6 +1,6 @@
 package com.medicalmanager.presentation.appointment.screen
 
-import android.util.Log
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -30,12 +30,11 @@ import com.medicalmanager.presentation.appointment.view_model.AppointmentViewMod
 import kotlinx.coroutines.launch
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppointmentBookingScreen(
     viewModel: AppointmentViewModel = hiltViewModel(),
-//    doctorId: String,
-//    userId: String
 ) {
     var selectedDate by remember { mutableStateOf<CalendarSelection.Date?>(null) }
 
@@ -49,10 +48,8 @@ fun AppointmentBookingScreen(
             yearSelection = true,
             style = CalendarStyle.MONTH
         ),
-        selection = CalendarSelection.Date {
+        selection = CalendarSelection.Date{date->
             selectedDate = selectedDate
-            Log.d("date" ,"$selectedDate")
-
         }
 
     )
@@ -60,14 +57,12 @@ fun AppointmentBookingScreen(
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
-
         // Create a button to book the appointment
         Button(
-
             onClick = {
                 calendarState.show()
                 selectedDate?.let { date ->
-                    val appointment = AppointmentModel( date, AppointmentStatus.PENDING)
+                    val appointment = AppointmentModel( date = date, AppointmentStatus.PENDING)
                     viewModel.bookAppointment(appointment)
                 }
 

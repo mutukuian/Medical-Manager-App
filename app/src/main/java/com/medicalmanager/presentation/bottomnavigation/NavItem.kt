@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 
 data class NavItem(
     val label: String,

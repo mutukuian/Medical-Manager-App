@@ -1,6 +1,8 @@
 package com.medicalmanager.presentation.appointment.view_model
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class AppointmentViewModel @Inject constructor(
     private val bookAppointmentUseCase: BookAppointmentUseCase
@@ -25,19 +28,30 @@ class AppointmentViewModel @Inject constructor(
 
     val appointmentBooking: StateFlow<BookingState> = _appointmentBooking
 
+    private val _selectedDate = MutableStateFlow<CalendarSelection.Date?>(null)
+
+    val selectedDate: StateFlow<CalendarSelection.Date?> = _selectedDate
 
 
 
-     val selection = CalendarSelection.Date{date ->
-         Log.d("SelectedDate","{$date}")
-     }
+
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val selection = CalendarSelection.Date { date->
+//        _selectedDate.value =
+        Log.d("SelectedDate", "$date")
+    }
+
+
 
     init {
-        bookAppointment(appointment = AppointmentModel( date = selection, status = AppointmentStatus.PENDING))
+                bookAppointment(appointment = AppointmentModel(date = selection, status = AppointmentStatus.PENDING))
     }
+
     fun bookAppointment(appointment: AppointmentModel){
         viewModelScope.launch {
-
             bookAppointmentUseCase.invoke(appointment).collect{result->
                 when(result){
                     is Resource.Success ->{_appointmentBooking.value = BookingState(data = appointment)

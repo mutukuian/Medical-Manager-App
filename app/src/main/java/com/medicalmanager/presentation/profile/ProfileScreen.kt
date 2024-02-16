@@ -53,8 +53,7 @@ import com.medicalmanager.R
 import com.medicalmanager.core.common.Constants
 import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 import com.medicalmanager.presentation.authentication.auth_view_model.LogOutViewModel
-import com.medicalmanager.presentation.bottomnavigation.Screens
-import com.medicalmanager.presentation.bottomnavigation.Screenss
+
 import com.medicalmanager.presentation.ui.theme.LightPrimaryColor
 import com.medicalmanager.presentation.ui.theme.Poppins
 import com.medicalmanager.presentation.ui.theme.PrimaryColor
@@ -241,11 +240,13 @@ fun GeneralOptionsUI(
         LaunchedEffect(key1 = state.value?.data){
             scope.launch {
                 if (state.value?.data?.isNotEmpty() == true) {
-                    val success = state.value?.data
-                    navController.navigate(Screenss.LogInScreen.route){
-                        popUpTo(Screenss.LogInScreen.route){inclusive = true}
+                   // val success = state.value?.data
+                    navController.navigate(com.medicalmanager.presentation.navigation.Screen.LogInScreen.route){
+                        popUpTo(com.medicalmanager.presentation.navigation.Screen.LogInScreen.route){
+                            inclusive = true
+                        }
                     }
-                    Toast.makeText(context, "$success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Logged out successfully", Toast.LENGTH_SHORT).show()
                 }
             }
         }

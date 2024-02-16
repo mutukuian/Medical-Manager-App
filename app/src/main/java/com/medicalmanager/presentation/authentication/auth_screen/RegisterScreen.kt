@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 import com.medicalmanager.presentation.authentication.auth_view_model.RegisterViewModel
 import kotlinx.coroutines.launch
 
@@ -61,8 +60,6 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
-
 
         TextField(
             value = email,
@@ -100,7 +97,7 @@ fun RegisterScreen(
             fontSize = 14.sp,
             modifier = Modifier
                 .clickable {
-                    navController.navigate(Screen.LoginScreen.route)
+                    navController.navigate(com.medicalmanager.presentation.navigation.Screen.LogInScreen.route)
                 }
                 .padding(vertical = 8.dp)
         )

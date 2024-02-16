@@ -11,19 +11,26 @@ import com.medicalmanager.presentation.bottomnavigation.AppNavigation
 
 @Composable
 fun SetUpNavGraph(
-    navController:NavHostController
+    navController:NavHostController,
+
 ){
-    NavHost(navController = navController, startDestination = "register_screen"){
-        composable(Screen.RegisterScreen.route){
-            RegisterScreen(navController = navController)
-        }
+        NavHost(navController = navController, startDestination = Screen.LoginScreen.route){
 
-        composable(Screen.LoginScreen.route){
-            LogInScreen(navController = navController)
-        }
-        composable(Screen.HomeScreen.route){
-            AppNavigation()
-        }
+            composable(Screen.RegisterScreen.route){
+                RegisterScreen(navController = navController)
+            }
+            composable(Screen.LoginScreen.route){
+                LogInScreen(navController = navController)
+            }
 
-    }
+            composable(Screen.HomeScreen.route){
+                    AppNavigation()
+                }
+
+
+
+        }
 }
+
+
+

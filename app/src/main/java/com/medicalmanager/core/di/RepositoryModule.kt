@@ -36,7 +36,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providesAppointmentRepository(firebaseAuth: FirebaseAuth,fireStore: FirebaseFirestore):AppointmentRepository{
-        return AppointmentRepositoryImpl(fireStore, firebaseAuth)
+        return AppointmentRepositoryImpl(fireStore,firebaseAuth)
     }
 
     @Provides
