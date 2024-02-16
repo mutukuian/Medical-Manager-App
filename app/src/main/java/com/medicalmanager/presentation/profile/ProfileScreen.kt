@@ -51,9 +51,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.medicalmanager.R
 import com.medicalmanager.core.common.Constants
-import com.medicalmanager.presentation.authentication.auth_navigation.Screen
 import com.medicalmanager.presentation.authentication.auth_view_model.LogOutViewModel
-
 import com.medicalmanager.presentation.ui.theme.LightPrimaryColor
 import com.medicalmanager.presentation.ui.theme.Poppins
 import com.medicalmanager.presentation.ui.theme.PrimaryColor

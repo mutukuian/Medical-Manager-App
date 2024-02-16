@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
+import androidx.compose.material.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,8 +26,8 @@ fun BottomNavBar(
     Card(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .fillMaxWidth()
-       // elevation = 4.dp
+            .fillMaxWidth(),
+        elevation = 4.dp
     ) {
         Row(
             modifier = Modifier.padding(8.dp),
