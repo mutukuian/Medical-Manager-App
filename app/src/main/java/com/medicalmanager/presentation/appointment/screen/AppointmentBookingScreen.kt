@@ -1,10 +1,14 @@
 package com.medicalmanager.presentation.appointment.screen
 
 
+import android.os.Build
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -25,18 +29,24 @@ import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.calendar.models.CalendarStyle
 import com.medicalmanager.domain.model.AppointmentModel
-import com.medicalmanager.domain.model.AppointmentStatus
+import com.medicalmanager.domain.model.DoctorModel
 import com.medicalmanager.presentation.appointment.view_model.AppointmentViewModel
 import kotlinx.coroutines.launch
 
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppointmentBookingScreen(
+    doctor:DoctorModel,
     viewModel: AppointmentViewModel = hiltViewModel(),
+    navigateToBookingScreen: (CalendarSelection.Date) -> Unit
 ) {
     var selectedDate by remember { mutableStateOf<CalendarSelection.Date?>(null) }
+
+    val context = LocalContext.current
+
 
     // Create a DatePicker here to select the appointment date and time
     val calendarState = rememberSheetState()
@@ -49,10 +59,21 @@ fun AppointmentBookingScreen(
             style = CalendarStyle.MONTH
         ),
         selection = CalendarSelection.Date{date->
-            selectedDate = selectedDate
+           selectedDate = selectedDate
+            Log.d("SelectedDate" ,"$date")
+            Toast.makeText(context,"You have successfully booked appointment on $date",Toast.LENGTH_SHORT).show()
+            selectedDate?.let { selected->
+                val appointment = AppointmentModel(
+                    date = selected.toString(),
+                    doctorName=doctor.fullName
+                )
+                viewModel.bookAppointment(appointment)
+            }
         }
 
     )
+
+
 
     Column(
         modifier = Modifier.padding(16.dp)
@@ -61,14 +82,22 @@ fun AppointmentBookingScreen(
         Button(
             onClick = {
                 calendarState.show()
-                selectedDate?.let { date ->
-                    val appointment = AppointmentModel( date = date, AppointmentStatus.PENDING)
-                    viewModel.bookAppointment(appointment)
-                }
-
             }
         ) {
             Text("Book Appointment")
+        }
+
+
+
+        selectedDate?.let { date ->
+//            Button(
+//                onClick = {
+//                    navigateToBookingScreen(date)
+//                }
+//            ){
+            Text("Confirm Appointment for $date")
+
+
         }
 
         // Observe the state flow from the ViewModel and react accordingly
@@ -79,6 +108,9 @@ fun AppointmentBookingScreen(
 }
 
 
+
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HandleState(viewModel: AppointmentViewModel = hiltViewModel()){
 

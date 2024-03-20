@@ -1,8 +1,10 @@
 package com.medicalmanager.presentation.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.medicalmanager.presentation.navigation.MainScreen
@@ -16,18 +18,13 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var mainViewModel:MainViewModel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MedicalManagerTheme {
-                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-                val destination by mainViewModel.startDestination.collectAsState()
+                    val destination by mainViewModel.startDestination.collectAsState()
                     MainScreen(startDestination = destination)
-
                 }
             }
         }

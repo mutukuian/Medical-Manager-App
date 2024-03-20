@@ -1,5 +1,7 @@
 package com.medicalmanager.presentation.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -19,6 +21,7 @@ import com.medicalmanager.presentation.navigation.components.BottomNavBar
 import com.medicalmanager.presentation.navigation.components.provideBottomNavItems
 import com.medicalmanager.presentation.navigation.mainnavigation.MainNavigation
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen(
     startDestination:String

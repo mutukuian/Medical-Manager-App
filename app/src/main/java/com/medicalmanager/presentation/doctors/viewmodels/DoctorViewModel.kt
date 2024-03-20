@@ -39,23 +39,3 @@ class DoctorViewModel @Inject constructor(
 
 }
 
-/*
-
-private fun fetchDoctors() = viewModelScope.launch {
-    getDoctorUseCase().forEach { result ->
-        when (result) {
-            is Resource.Error -> _doctorListing.value = DoctorListingState(error = result.message)
-            is Resource.Loading -> _doctorListing.value = DoctorListingState(isLoading = true)
-            is Resource.Success -> {
-                val doctorModelList = listOf(DoctorModel(
-                    image = result.data?.image ?: "",
-                    fullName = result.data?.fullName ?: "",
-                    hospitalName = result.data?.hospitalName ?: "",
-                    role = result.data?.role ?: ""
-                ))
-                _doctorListing.value = DoctorListingState(data = doctorModelList)
-            }
-        }
-    }
-}
- */

@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
     id("com.google.gms.google-services")
 
 }
@@ -39,6 +40,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+
     }
     buildFeatures {
         compose = true
@@ -68,6 +70,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+  //  implementation("androidx.compose.material3:material3-android:1.2.0")
 
 
     testImplementation(TestImplementation.junit)
