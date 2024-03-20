@@ -1,17 +1,16 @@
 package com.medicalmanager.presentation.appointment.view_model
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.medicalmanager.core.common.Resource
 import com.medicalmanager.domain.model.AppointmentModel
-import com.medicalmanager.domain.model.AppointmentStatus
 import com.medicalmanager.domain.use_case.BookAppointmentUseCase
+import com.medicalmanager.domain.use_case.GetDoctorUseCase
 import com.medicalmanager.presentation.appointment.screen.BookingState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +19,8 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class AppointmentViewModel @Inject constructor(
-    private val bookAppointmentUseCase: BookAppointmentUseCase
+    private val bookAppointmentUseCase: BookAppointmentUseCase,
+
 ):ViewModel() {
     private val _appointmentBooking: MutableStateFlow<BookingState> = MutableStateFlow(
         BookingState()
@@ -28,27 +28,10 @@ class AppointmentViewModel @Inject constructor(
 
     val appointmentBooking: StateFlow<BookingState> = _appointmentBooking
 
-    private val _selectedDate = MutableStateFlow<CalendarSelection.Date?>(null)
-
-    val selectedDate: StateFlow<CalendarSelection.Date?> = _selectedDate
-
-
-
-
-
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    val selection = CalendarSelection.Date { date->
-//        _selectedDate.value =
-        Log.d("SelectedDate", "$date")
-    }
-
-
-
     init {
-                bookAppointment(appointment = AppointmentModel(date = selection, status = AppointmentStatus.PENDING))
+        bookAppointment(appointment = AppointmentModel())
     }
+
 
     fun bookAppointment(appointment: AppointmentModel){
         viewModelScope.launch {

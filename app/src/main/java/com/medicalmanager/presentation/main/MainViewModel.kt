@@ -1,15 +1,13 @@
 package com.medicalmanager.presentation.main
 
-import android.widget.Toast
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.medicalmanager.core.common.Resource
 import com.medicalmanager.domain.repository.AuthRepository
 import com.medicalmanager.presentation.navigation.Screen
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

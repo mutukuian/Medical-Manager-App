@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppointmentRepository {
     suspend fun bookAppointment(appointment:AppointmentModel): Flow<Resource<Task<DocumentReference>>>
+
 }

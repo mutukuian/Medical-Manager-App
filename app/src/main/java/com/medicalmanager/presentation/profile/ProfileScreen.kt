@@ -76,8 +76,8 @@ fun ProfileScreen(
             HeaderText()
             Spacer(modifier = Modifier.height(16.dp))
 
-            ProfileCardUI()
-            Spacer(modifier = Modifier.height(16.dp))
+//            ProfileCardUI()
+//            Spacer(modifier = Modifier.height(16.dp))
 
 
             GeneralOptionsUI(navController = navController)

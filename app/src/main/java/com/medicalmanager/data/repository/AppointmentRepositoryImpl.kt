@@ -7,6 +7,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalmanager.core.common.Resource
 import com.medicalmanager.domain.model.AppointmentModel
+import com.medicalmanager.domain.model.DoctorModel
 import com.medicalmanager.domain.repository.AppointmentRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -18,13 +19,15 @@ class AppointmentRepositoryImpl @Inject constructor(
     private val  firebaseAuth:FirebaseAuth
 ):AppointmentRepository {
 
+
     private val appointmentsCollection = fireStore.collection("appointments")
     override suspend fun bookAppointment(appointment: AppointmentModel): Flow<Resource<Task<DocumentReference>>> {
         return flow {
             emit(Resource.Loading())
                 val appointmentData = mapOf(
                     "date" to appointment.date,
-                    "status" to appointment.status.name
+//                    "status" to appointment.status.name
+                    "doctorName" to appointment.doctorName
                 )
 
                 //add appointment to fireStore
@@ -35,5 +38,6 @@ class AppointmentRepositoryImpl @Inject constructor(
         }
 
     }
+
 
 }
