@@ -33,7 +33,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesNotificationRepository(@ApplicationContext context: Context): NotificationRepoInt {
+    fun providesNotificationRepository(@ApplicationContext context: Context): NotificationRepository {
         return NotificationRepository(context)
     }
 

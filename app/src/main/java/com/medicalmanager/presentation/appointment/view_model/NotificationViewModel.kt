@@ -23,6 +23,10 @@ class NotificationViewModel @Inject constructor(
 
     val notificationTriggered: StateFlow<Boolean> = _notificationTriggered
 
+    init {
+        triggerNotificationWithDate("" ,"","")
+    }
+
     fun triggerNotification(title:String ,content:String){
         notificationRepo.showNotification(title ,content)
     }
