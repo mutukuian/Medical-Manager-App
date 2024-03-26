@@ -31,8 +31,9 @@ import com.maxkeppeler.sheets.calendar.models.CalendarStyle
 import com.medicalmanager.domain.model.AppointmentModel
 import com.medicalmanager.domain.model.DoctorModel
 import com.medicalmanager.presentation.appointment.view_model.AppointmentViewModel
+import com.medicalmanager.presentation.appointment.view_model.NotificationViewModel
 import kotlinx.coroutines.launch
-
+import java.time.LocalDate
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -41,6 +42,7 @@ import kotlinx.coroutines.launch
 fun AppointmentBookingScreen(
     doctor:DoctorModel,
     viewModel: AppointmentViewModel = hiltViewModel(),
+    view: NotificationViewModel = hiltViewModel(),
     navigateToBookingScreen: (CalendarSelection.Date) -> Unit
 ) {
     var selectedDate by remember { mutableStateOf<CalendarSelection.Date?>(null) }
@@ -59,7 +61,14 @@ fun AppointmentBookingScreen(
             style = CalendarStyle.MONTH
         ),
         selection = CalendarSelection.Date{date->
+
            selectedDate = selectedDate
+
+            selectedDate?.let { date->
+                val formattedDate = date.toString()
+                view.triggerNotificationWithDate("Appointment Scheduled", "You have successfully booked an appointment on ",formattedDate)
+            }
+
             Log.d("SelectedDate" ,"$date")
             Toast.makeText(context,"You have successfully booked appointment on $date",Toast.LENGTH_SHORT).show()
             selectedDate?.let { selected->
@@ -69,6 +78,7 @@ fun AppointmentBookingScreen(
                 )
                 viewModel.bookAppointment(appointment)
             }
+
         }
 
     )

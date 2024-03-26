@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.medicalmanager.core.common.Resource
+import com.medicalmanager.data.repository.NotificationRepository
 import com.medicalmanager.domain.model.AppointmentModel
 import com.medicalmanager.domain.use_case.BookAppointmentUseCase
 import com.medicalmanager.domain.use_case.GetDoctorUseCase
@@ -31,6 +32,7 @@ class AppointmentViewModel @Inject constructor(
     init {
         bookAppointment(appointment = AppointmentModel())
     }
+
 
 
     fun bookAppointment(appointment: AppointmentModel){
