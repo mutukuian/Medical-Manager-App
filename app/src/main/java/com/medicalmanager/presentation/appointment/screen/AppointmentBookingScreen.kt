@@ -63,11 +63,16 @@ fun AppointmentBookingScreen(
         selection = CalendarSelection.Date{date->
 
            selectedDate = selectedDate
-
-            selectedDate?.let { date->
+            if (date!=null) {
                 val formattedDate = date.toString()
-                view.triggerNotificationWithDate("Appointment Scheduled", "You have successfully booked an appointment on ",formattedDate)
+                val notificationContent = "Appointment Scheduled on $formattedDate"
+                view.triggerNotification("Appointment Scheduled", notificationContent)
             }
+
+//            selectedDate?.let { date->
+//                val formattedDate = date.toString()
+//                view.triggerNotificationWithDate("Appointment Scheduled", "You have successfully booked an appointment on ",formattedDate)
+//            }
 
             Log.d("SelectedDate" ,"$date")
             Toast.makeText(context,"You have successfully booked appointment on $date",Toast.LENGTH_SHORT).show()
