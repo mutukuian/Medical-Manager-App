@@ -70,7 +70,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-  //  implementation("androidx.compose.material3:material3-android:1.2.0")
+    implementation("androidx.compose.material3:material3-android:1.2.1")
+    //  implementation("androidx.compose.material3:material3-android:1.2.0")
 
 
     testImplementation(TestImplementation.junit)

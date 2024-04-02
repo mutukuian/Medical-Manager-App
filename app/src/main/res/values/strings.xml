@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MedicalManager</string>
+    <string name="app_logo">Medical Software</string>
+    <string name="the_jobplacer">Medical Manager</string>
+    <string name="find_job">See A Doctor</string>
+    <string name="login">Login</string>
+    <string name="register">Register \n</string>
 </resources>
