@@ -1,6 +1,7 @@
 package com.medicalmanager.presentation.appointment.screen
 
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
@@ -36,6 +37,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +48,21 @@ fun AppointmentBookingScreen(
     navigateToBookingScreen: (CalendarSelection.Date) -> Unit
 ) {
     var selectedDate by remember { mutableStateOf<CalendarSelection.Date?>(null) }
+    var bookedDates by remember { mutableStateOf<Set<String>?>(null) }
+
+    LaunchedEffect(key1 = viewModel.appointmentBooking.value) {
+        if (viewModel.appointmentBooking.value.data != null){
+            val bookedAppointment = viewModel.appointmentBooking.value.data!!
+            val formattedBookedDate = bookedAppointment.date.toString()
+            bookedDates?.let {
+                bookedDates = it.plus(formattedBookedDate)
+            }?:run {
+                bookedDates = setOf(formattedBookedDate)
+            }
+        }
+    }
+
+    val isDateAvailable = bookedDates?.contains(selectedDate?.toString())==false
 
     val context = LocalContext.current
 
@@ -63,19 +80,18 @@ fun AppointmentBookingScreen(
         selection = CalendarSelection.Date{date->
 
            selectedDate = selectedDate
-            if (date!=null) {
+            if (isDateAvailable) {
                 val formattedDate = date.toString()
-                val notificationContent = "Appointment Scheduled on $formattedDate"
+                val notificationContent = "Hello, Your Appointment is Scheduled on $formattedDate.If you'd like to reschedule,please Call +254707014276.Thank you."
                 view.triggerNotification("Appointment Scheduled", notificationContent)
+            }else{
+                Toast.makeText(context,"Date unavailable.Please choose another date.",Toast.LENGTH_SHORT).show()
             }
 
-//            selectedDate?.let { date->
-//                val formattedDate = date.toString()
-//                view.triggerNotificationWithDate("Appointment Scheduled", "You have successfully booked an appointment on ",formattedDate)
-//            }
+//
 
             Log.d("SelectedDate" ,"$date")
-            Toast.makeText(context,"You have successfully booked appointment on $date",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context,"You have successfully booked appointment on $date",Toast.LENGTH_SHORT).show()
             selectedDate?.let { selected->
                 val appointment = AppointmentModel(
                     date = selected.toString(),
