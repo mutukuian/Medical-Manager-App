@@ -130,7 +130,7 @@ private fun LoginAccTxt(navController: NavController) {
     ) {
         androidx.compose.material3.Text(
             modifier = Modifier.clickable {
-                navController.navigate(com.medicalmanager.presentation.navigation.Screen.LogInScreen.route)
+                navController.popBackStack()
             },
             text = buildAnnotatedString {
                 withStyle(
